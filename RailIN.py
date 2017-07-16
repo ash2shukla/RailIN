@@ -4,7 +4,6 @@ from user_agent import generate_user_agent as gua
 from json import dumps,loads
 from prettify import Prettify
 from datetime import date
-from pprint import pprint
 '''
 This API scrapes data of Indian Railways from erail.in and parses into JSON for use in personal applications.
 Not intended for commercial use.
@@ -13,7 +12,7 @@ Not intended for commercial use.
 2. Get Availability ( X )
 3. Get Fare ( X )
 4. Get Train Status ( X )
-5. Get StationCode
+5. Get StationCode ( X )
 6. Get PNR ( X )
 
 '''
