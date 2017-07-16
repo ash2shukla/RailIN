@@ -164,3 +164,19 @@ class Prettify:
                 for j in fare_types:
                     retval[i][j] = fare_rates[fare_contents.index(i)][fare_types.index(j)]
             return retval
+
+    def AvailToJson(self,string):
+        string_arr = string.split('~')[1:]
+        if ')' in string_arr[0]:
+            return {'status':'No Results Found'}
+        else:
+            data = string_arr[0].split('^')
+            data[0] = data[0].split('_')
+            return {
+            'train_no':data[0][0],
+            'from_code': data[0][1],
+            'to_code' : data[0][2],
+            'class':data[0][3],
+            'date':data[0][4],
+            'status':data[1]
+            }

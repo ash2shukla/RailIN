@@ -61,9 +61,11 @@ class RailIN:
         except:
             return {'error':'Unexpected Server Response'}
 
-    def getAvailability():
+    def getAvailability(self,TN,SSTN,DSTN,CLS,QT,DD,MM):
         URL_Avail = "https://d.erail.in/AVL_Request?Key="
-        return retval
+        val = '_'.join([str(TN),SSTN,DSTN,CLS,QT,str(DD)+'-'+str(MM)])
+        return Prettify().AvailToJson(get(URL_Avail+val).text)
+
 
     def getFare(self,TN,F,T):
         URL_Fare = "https://erail.in/data.aspx?Action=GetTrainFare&train="+str(TN)+"&from="+F+"&to="+T
@@ -73,5 +75,3 @@ class RailIN:
         D = '-'.join([str(DD), MMM, str(YYYY)])
         URL_Live = "https://data.erail.in/getIR.aspx?&jsonp=true&Data=RUNSTATUS~0_"+str(TN)+"_"+D+"_"+CD
         return loads(get(URL_Live).text.strip('()'))
-if __name__ == "__main__":
-        pprint(RailIN().getStatus(12420,15,'Jul',2017,'ON'))
