@@ -20,6 +20,8 @@ Not intended for commercial use.
 class RailIN:
     # Website asks for captcha which can be pre-generated due to the flaw
     def getPNR(self,PNR):
+        if (len(str(PNR))<10) or (len(str(PNR))>10):
+            return dumps({'error':'PNR must be 10 digit.'})
         URL_captcha = 'http://www.indianrail.gov.in/enquiry/captchaDraw.png'
         # create a Session
         s = Session()
@@ -42,7 +44,7 @@ class RailIN:
 
     def getAllTrains(self,F,T):
         URL_Trains = "https://erail.in/rail/getTrains.aspx?Station_From="+F+"&Station_To="+T+"&DataSource=0&Language=0&Cache=true"
-        return loads(Prettify().TrainsToJson(get(URL_Trains,headers = {'User-Agent':gua()}).text))
+        return Prettify().TrainsToJson(get(URL_Trains,headers = {'User-Agent':gua()}).text)
 
     # Pass in date month and year
     def getTrainsOn(self,F,T,DD,MM,YYYY):
@@ -51,7 +53,7 @@ class RailIN:
         for i in self.getAllTrains(F,T):
             if i['train_base']['running_days'][D]=='1':
                 retval.append(i)
-        return loads(retval)
+        return dumps(retval)
 
     def getTrain(self,TN):
         URL_Train = "https://erail.in/rail/getTrains.aspx?TrainNo="+str(TN)+"&DataSource=0&Language=0&Cache=true"
