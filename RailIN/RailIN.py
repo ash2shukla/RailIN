@@ -72,7 +72,9 @@ class RailIN:
         URL_Fare = "https://erail.in/data.aspx?Action=GetTrainFare&train="+str(TN)+"&from="+F+"&to="+T
         return Prettify().FareToJson(get(URL_Fare).text)
 
-    def getStatus(self,TN,DD,MMM,YYYY,STN):
-        D = '-'.join([str(DD), MMM, str(YYYY)])
-        URL_Live = "https://data.erail.in/getIR.aspx?&jsonp=true&Data=RUNSTATUS~0_"+str(TN)+"_"+D+"_"+STN
-        return loads(get(URL_Live).text.strip('()'))
+    def getStatus(self,TN,STN):
+        # Take param - DD,MMM,YYYY
+        # D = '-'.join([str(DD), MMM, str(YYYY)])
+        URL_Live2 = "https://data.tripmgt.com/Data.aspx?Action=TRAIN_STATION_DELAYS&Data1="+str(TN)+"&Data2="+str(STN)
+        # URL_Live = "https://data.erail.in/getIR.aspx?&jsonp=true&Data=RUNSTATUS~0_"+str(TN)+"_"+D+"_"+STN
+        return loads(get(URL_Live2).text)
