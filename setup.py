@@ -15,7 +15,7 @@ setup(
           'bs4',
           'requests==2.18.1',
           'user_agent==0.1.8',
-          'pillow==4.2.1',
+          'pillow==6.2.0',
           'pytesseract==0.1.7'
           ]
 )
