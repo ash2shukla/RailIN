@@ -13,7 +13,7 @@ setup(
   classifiers = [],
   install_requires=[
           'bs4',
-          'requests==2.18.1',
+          'requests==2.20.0',
           'user_agent==0.1.8',
           'pillow==4.2.1',
           'pytesseract==0.1.7'
